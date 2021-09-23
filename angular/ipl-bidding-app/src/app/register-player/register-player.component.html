@@ -1,32 +1,50 @@
-<div class="card p-3">
-  <h5>Register Team player</h5>
-  <form>
+<div class="card p-3 m-4 bg-secondary text-white">
+  <div class=text-center>
+    <h4>Register Team player</h4>
+  </div>
+
+
     <div class="mb-1">
-      <label for="exampleInputName" class="form-label">Name</label>
-      <input type="name" class="form-control" id="exampleInputName">
+      <label for="PlayerName" class="form-label">Name</label>
+      <input type="name" class="form-control" id="PlayerName" [(ngModel)]="player_name">
    </div>
    <div class="mb-1">
-    <label for="exampleInputAge" class="form-label">Age</label>
-    <input type="number" class="form-control" id="exampleInputAge">
+    <label for="Age" class="form-label">Age</label>
+    <input type="number" class="form-control" id="Age" [(ngModel)]="player_age">
   </div>
   <div class="mb-1">
-    <select class="form-select" aria-label="Default select example" id="exampleInputBatsman">
-      <option selected>Select</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+    <label for="Type" class="form-label">Type</label>
+    <select class="form-select" aria-label="Default select example" id="Type" [(ngModel)]="selected_player_type">
+
+      <option [ngValue]="p" *ngFor="let p of player_type">
+        {{p.type}}
+      </option>
+
     </select>
+  </div>
+  <div class="mb-1">
+    <div class="row">
+      <div class="col-2">
+        <label for="BasePrice" class="form-label">Base price</label>
+        <input type="number" class="form-control" id="BasePrice" [(ngModel)]="player_base_price">
+      </div>
+      <div class="col-2" *ngIf=" !(selected_player_type.type === 'Bowler') ">
+        <label for="StrikeRate" class="form-label">Strike Rate</label>
+        <input type="number" class="form-control" id="StrikeRate" [(ngModel)]="player_strike_rate">
+      </div>
+      <div class="col-2">
+        <label for="Economy" class="form-label">Economy</label>
+        <input type="number" class="form-control" id="Economy" [(ngModel)]="player_economy">
+      </div>
+      <div class="col-2" *ngIf=" !(selected_player_type.type === 'Batsman') ">
+        <label for="NoOfWickets" class="form-label">No. of Wickets</label>
+        <input type="number" class="form-control" id="NoOfWickets" [(ngModel)]="player_wickets">
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-3">
+    <button (click)="registerPlayer()" class="btn btn-success">Register</button>
   </div>
 
 
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
 </div>
